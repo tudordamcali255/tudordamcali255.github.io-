@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tudor Damcali</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --ink: #1c1c1a;
+    --ink-soft: #6b6a66;
+    --rule: #e4e2dc;
+    --accent: #7a2e2e;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html, body {
+    height: 100%;
+  }
+
+  .wrap {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 48px;
+  }
+
+  header.site {
+    margin-bottom: 48px;
+    text-align: center;
+  }
+
+  #home {
+    flex: 1;
+  }
+
+  header.site h1 {
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    margin: 0 0 6px;
+  }
+
+  header.site p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 15px;
+    font-style: italic;
+  }
+
+  /* --- List view --- */
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .list li + li {
+    margin-top: 22px;
+  }
+
+  .list li {
+    padding: 26px 0;
+  }
+
+  .list .entry-title {
+    font-size: 21px;
+    display: inline-block;
+    margin-bottom: 4px;
+    text-decoration: none;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  .list .entry-title:hover {
+    color: var(--accent);
+  }
+
+  .list .entry-meta {
+    display: block;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  /* --- Article view --- */
+  article {
+    display: none;
+  }
+
+  article.visible {
+    display: block;
+  }
+
+  .back {
+    display: inline-block;
+    margin-bottom: 40px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    text-decoration: none;
+  }
+
+  .back:hover { color: var(--accent); }
+
+  article h2 {
+    font-size: 26px;
+    font-weight: 400;
+    margin: 0 0 8px;
+    line-height: 1.25;
+  }
+
+  article .meta {
+    color: var(--ink-soft);
+    font-size: 14px;
+    font-style: italic;
+    margin-bottom: 36px;
+  }
+
+  article p {
+    margin: 0 0 20px;
+    font-size: 17px;
+  }
+
+  #home.hidden, #article-container.hidden, #site-header.hidden {
+    display: none;
+  }
+
+  footer {
+    margin-top: 40px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-align: right;
+  }
+
+  #article-container {
+    flex: 1;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="site" id="site-header">
+    <h1>Tudor Damcali</h1>
+  </header>
+
+  <div id="home">
+    <ul class="list" id="post-list"></ul>
+  </div>
+
+  <div id="article-container" class="hidden">
+    <a href="#" class="back" onclick="showHome(); return false;">&larr; All reviews</a>
+    <div id="article-mount"></div>
+  </div>
+
+  <footer>&copy; <span id="year"></span> Tudor Damcali</footer>
+</div>
+
+<script>
+  // Add future reviews here — each one gets a link on the homepage automatically.
+  const posts = [
+    {
+      slug: "north-by-northwest",
+      title: "On North by Northwest",
+      date: "1959 · Alfred Hitchcock",
+      paragraphs: [
+        "Nineteen distinct instruments of Bernard Herrmann’s orchestra begin pulsating in reaction to graphic designer Saul Bass’ title sequence of New York’s brutally polished buildings, to create one massive, kinetic sound. A precedent that anything and everything can happen is established - the audience is immediately captivated and ready to surrender to the journey of North by Northwest. Alfred Hitchcock managed to introduce entertainment to the big screen effortlessly. He knew exactly how to do it.",
+        "Movies serve a multitude of purposes in our world, one of which is to let us explore worlds that don't exist, as if we were part of them - precisely North by Northwest’s attempt. Following the opening sequence, the audience is placed in a very particular territory - it’s facing an open door that gives access to a realm of imagination. We then meet Roger Thornhill, (Cary Grant) and he begins playing the role you assume he plays in real life, which makes it believable - alongside, a herd of 1000 tall men in suits rushing out the fantastic looking offices to do god knows what (the way overused scene we tend to love for very legitimate visual reasons). And with this, the dream door shuts in the audience’s face. Clearly, reality is what we should expect - at least some version of it.",
+        "But then, by the ten minute mark, foreign spies mistake Roger for a secret agent, kidnapping him, and the movie starts becoming Hitchcockian. Chaos follows - Roger gets intoxicated and barely survives a car crash, gets framed for murder, falls in love with Eve (Eva Marie Saint), and ultimately survives the antagonists. Most decisions Roger takes are unjustified, yet turn out to be pivotal moments - which confuses the audience, because oddly, foundation is not forcing causation, and that is precisely what we expect to happen in the real world. Hitchcock however, intentionally stacks everchanging obstacles on top of Roger, all running in completely opposing directions. He does this because he’s on the other side of the door, where one can accept the implausible and celebrate confusion - but the audience’s feet are already rooted in reality, and although we’re yearning to dream alongside him, our bodies can’t surrender to the journey anymore, because the case made wasn’t magical enough. Thus, we internally label the movie as far-fetched and unconvincing, and continue our viewing with one single other expectation, that is pure entertainment - meanwhile Hitchcock rolls his eyes at us. While filming, Cary Grant never seemed to understand the film’s said greatest strength, it’s almost Kafkaesque absurdity - I tend to agree with him; almost, never quite enough.",
+        "I’ve heard people claiming the premise to be of Roger forced to face reality, and thus becoming courageous where he was self centered - I disagree. One can read Roger’s typology from the first couple of minutes, and while of course his attitude changes once conflict arises, it changes exactly as you’d expect. And when Eve appears in the second act to entice Roger, well again, Roger’s attitude changes, exactly as you’d expect. Which is fine, because sometimes pure entertainment is enough to make a movie work, and above all, a blockbuster. And it worked indeed - the box office did, the critics said so, and the later James Bond franchise proved so. Charm works wonders on an audience, and so does a transatlantic accent - but North by Northwest, written by Ernest Lehman and directed by Alfred Hitchcock, although culturally significant, fails at having a purpose, and thus at being a significant piece of visual art.",
+        "James Mason and Martin Landau playing Vandamm and Leonard as the antagonists make a strong attempt at alluring the audience into siding with the bad guys, reinforced by the Frank Lloyd Wright-esque set design. The dynamic between Roger and his mother, Clara Thornhill, played by Jessie Royce Landis was, for me, a highlight of the movie - a vulnerable and beautiful way to exemplify maternal connection, with caress and wit, that managed to bring a smile to my face. But the movie was never really about them, and for that matter, neither was it about Roger, or Eve. Characters in Hitchcock’s movies are there as a means to an end, a dramatic one, and not much more. Character analysis is not a focus, and entertainment is chosen at the expense of meaningfulness, for better or for worse."
+      ]
+    }
+  ];
+
+  const list = document.getElementById('post-list');
+  posts.forEach(post => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = '#' + post.slug;
+    a.className = 'entry-title';
+    a.textContent = post.title;
+    a.onclick = function(e) { e.preventDefault(); showArticle(post.slug); };
+    const meta = document.createElement('span');
+    meta.className = 'entry-meta';
+    meta.textContent = post.date;
+    li.appendChild(a);
+    li.appendChild(meta);
+    list.appendChild(li);
+  });
+
+  function showArticle(slug) {
+    const post = posts.find(p => p.slug === slug);
+    if (!post) return;
+    const mount = document.getElementById('article-mount');
+    mount.innerHTML = '<h2>' + post.title + '</h2><div class="meta">' + post.date + '</div>' +
+      post.paragraphs.map(p => '<p>' + p + '</p>').join('');
+    document.getElementById('home').classList.add('hidden');
+    document.getElementById('article-container').classList.remove('hidden');
+    document.getElementById('site-header').classList.add('hidden');
+    window.location.hash = slug;
+    window.scrollTo(0, 0);
+  }
+
+  function showHome() {
+    document.getElementById('home').classList.remove('hidden');
+    document.getElementById('article-container').classList.add('hidden');
+    document.getElementById('site-header').classList.remove('hidden');
+    history.replaceState(null, '', window.location.pathname);
+    window.scrollTo(0, 0);
+  }
+
+  // Deep-link support: opening a shared link like yoursite.com/#north-by-northwest
+  // jumps straight to that review.
+  window.addEventListener('DOMContentLoaded', () => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && posts.find(p => p.slug === hash)) {
+      showArticle(hash);
+    }
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
